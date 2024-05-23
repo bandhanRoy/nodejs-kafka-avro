@@ -1,0 +1,11 @@
+{
+  "name": "nodejs-kafka-avro",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com-personal:bandhanRoy/nodejs-kafka-avro.git",
+  "author": "Bandhan Roy <bandhan.roy1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  }
+}
