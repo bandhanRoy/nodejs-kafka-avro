@@ -1,7 +1,8 @@
 -- INPUT
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL
+  name TEXT NOT NULL,
+  message_addresses TEXT[] NOT NULL
 );
 
 CREATE TABLE posts (

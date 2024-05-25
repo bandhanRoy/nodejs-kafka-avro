@@ -14,11 +14,12 @@ const getUserById = async (id) => {
 const upsertUser = async (user) => {
   await pool.query(
     `
-    INSERT INTO users (id, name) VALUES ($1, $2)
+    INSERT INTO users (id, name, message_addresses) VALUES ($1, $2, $3)
     ON CONFLICT (id) DO UPDATE SET
-      name = EXCLUDED.name
+      name = EXCLUDED.name,
+      message_addresses = (users.message_addresses || EXCLUDED.message_addresses)[array_length(posts.message_addresses) - 9:]
     `,
-    [user.id, user.name]
+    [user.id, user.name, user.messageAddresses]
   );
 };
 

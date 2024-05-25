@@ -24,9 +24,12 @@ const main = async () => {
   process.on('SIGHUP', shutdown);
 
   await consumer.run({
-    eachMessage: async ({ message }) => {
+    eachMessage: async ({ message, partition }) => {
       const user = await registry.decode(message.value);
-      await upsertUser(user);
+      await upsertUser({
+        ...user,
+        messageAddresses: [`${partition}:${message.offset}`],
+      });
       await updateUserSummary(user.id);
       console.log(user);
     },
